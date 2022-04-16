@@ -6,6 +6,8 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/yash04g/Go-mux-mongo/configs"
+	"github.com/yash04g/Go-mux-mongo/routes"
 )
 
 func HomePage(w http.ResponseWriter, r *http.Request) {
@@ -17,6 +19,10 @@ func main() {
 	router := mux.NewRouter()
 
 	router.HandleFunc("/", HomePage).Methods("GET")
+	// Run database
+	configs.ConnectDB()
+
+	routes.UserRoute(router)
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
