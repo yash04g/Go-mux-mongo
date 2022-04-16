@@ -33,6 +33,6 @@ func ConnectDB() *mongo.Client {
 
 // Getting the collections of database
 func GetCollection(client *mongo.Client, collectionName string) *mongo.Collection {
-	collection := DB.Database("go-mux-mongo").Collection(collectionName)
+	collection := client.Database("golangdb").Collection(collectionName)
 	return collection
 }
